@@ -18,24 +18,21 @@
                 <div class="mr-3"> <strong>4</strong> passes</div>
             </div>
             <div class="mt-3">
-                <div> laravel framework</div>
-                <div>love beautiful code we do too</div>
-                <a href="#">bla bla bla bla</a>
+                <div>{{--$user->profile->title--}}</div>
+                <div>{{--$user->profile->description--}}</div>
+                <a href="{{--$user->profile->url--}}">{{--$user->profile->url--}}</a>
             </div>
             
         </div>
         
     </div>
     <div class="row">
-        <div class="col-4">
-            <img src="w-100" alt="">
+        @foreach ($user->posts as $post)
+        <div class="col-4 mt-5">
+            <img src="{{asset('storage') . '/' . $post->image }}" class="w-100" alt=""> {{--on envoi direct le lien de l'utilisateur--}}
         </div>
-        <div class="col-4">
-            <img src="w-100" alt="">
-        </div>
-        <div class="col-4">
-            <img class="w-100" src="" alt="">
-        </div>
+        @endforeach
+        
 
     </div>
 </div>

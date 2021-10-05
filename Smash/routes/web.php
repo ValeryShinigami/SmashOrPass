@@ -23,3 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Création de la route PROFILES.SHOW qui récupère l'utilisateur par son prénom
 Route::get('/profiles/{user}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profiles.show');
+
+//création des posts
+Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');

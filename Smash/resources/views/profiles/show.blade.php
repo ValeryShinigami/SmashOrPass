@@ -13,7 +13,7 @@
                 <button class="btn btn-danger">Pass</button>
             </div>
             <div class="d-flex mt-3">
-                <div class="mr-3"> <strong>25</strong> publication</div>
+                <div class="mr-3"> <strong>{{$user->posts->count()}}</strong> publication</div>
                 <div class="mr-3"> <strong>300</strong> smashes</div>
                 <div class="mr-3"> <strong>4</strong> passes</div>
             </div>
@@ -29,7 +29,9 @@
     <div class="row">
         @foreach ($user->posts as $post)
         <div class="col-4 mt-5">
-            <img src="{{asset('storage') . '/' . $post->image }}" class="w-100" alt=""> {{--on envoi direct le lien de l'utilisateur--}}
+            <a href="{{route('posts.show', ['post' => $post->id])}}"><img src="{{asset('storage') . '/' . $post->image }}" class="w-100" alt=""> {{--on envoi direct le lien de l'utilisateur--}}
+
+            </a>
         </div>
         @endforeach
         

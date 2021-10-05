@@ -27,3 +27,5 @@ Route::get('/profiles/{user}', [App\Http\Controllers\ProfileController::class, '
 //création des posts
 Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
+
+Route::get('/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');

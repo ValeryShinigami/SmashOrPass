@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+
 
 class PostController extends Controller
 {
@@ -49,6 +52,12 @@ class PostController extends Controller
         //dd(request('image'));
         $imagePath = request('image')->store('uploads', 'public'); //la fonction store place l'image dans le fichier upload de storage
 
+        //utilisation de la facade intervention image installé avec composer require intervention/image
+        //public_path permet de pointer vers le dossier public 
+        //
+        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $imagePath
@@ -63,9 +72,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
         //
+        //dd($post);
+        return view('posts.show', compact('post'));
     }
 
     /**

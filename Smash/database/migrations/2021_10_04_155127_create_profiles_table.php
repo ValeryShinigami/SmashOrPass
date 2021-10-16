@@ -19,6 +19,7 @@ class CreateProfilesTable extends Migration
             $table->text('description');
             $table->string('url');
             $table->unsignedBigInteger('user_id')->index();//clé etrangère
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

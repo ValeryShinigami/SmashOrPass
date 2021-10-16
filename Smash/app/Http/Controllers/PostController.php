@@ -29,6 +29,17 @@ class PostController extends Controller
     {
         return $this->middleware('auth');
     }
+
+    public function publication()
+     {
+       $users = auth()->user()->pluck('id');
+       //dd($users);
+       //je récupère les posts de ma colone username dans la table users
+        $posts = Post::whereIN('user_id', $users)->latest()->get(); 
+      // dd($posts);
+
+       return view ('posts.publications', compact('posts'));
+     }
     
     public function create()
     {
@@ -47,7 +58,9 @@ class PostController extends Controller
         // validation des champs 
         $data = request()->validate([
             'caption' => ['required', 'string'],
-            'image' => ['required', 'image']
+            'image' => ['required', 'image'],
+            'description' => ['required', 'string']
+            
         ]);
         //dd(request('image'));
         $imagePath = request('image')->store('uploads', 'public'); //la fonction store place l'image dans le fichier upload de storage
@@ -60,7 +73,8 @@ class PostController extends Controller
 
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
-            'image' => $imagePath
+            'image' => $imagePath,
+            'description' => $data['description']
         ]);
 
         return redirect()->route('profiles.show', ['user' => auth()->user()]);
@@ -112,4 +126,5 @@ class PostController extends Controller
     {
         //
     }
+    
 }

@@ -4,21 +4,33 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-4 text-center">
-            <img src="{{asset('image/smashprofil.png')}}" width="150px" height="150px" class="rounded-circle" alt="imageProfil">
+            <img src="{{asset('storage'.'/'. $user->image)}}" width="150px" height="150px" class="rounded-circle" alt="imageProfil">
         </div>
         <div class="col-8">
             <div>
                 <h4>{{$user->username}}</h4> {{-- on récupère la variable $user et son attribut username --}}
-                <button class="btn btn-primary">Smash</button>
-                <button class="btn btn-danger">Pass</button>
+                <div class="d-flex">
+                    <button id="smash" class="btn btn-primary">Smash</button>
+                    <p class="pt-3 ml-2" >or</p>
+                    <button id="pass" class="btn btn-danger ml-2">Pass</button>
+                </div>
+                
             </div>
             <div class="d-flex mt-3">
                 <div class="mr-3"> <strong>{{$user->posts->count()}}</strong> publication</div>
-                <div class="mr-3"> <strong>300</strong> smashes</div>
-                <div class="mr-3"> <strong>4</strong> passes</div>
+                <div class="d-flex">
+                    <div id="smashes" class="mr-1">0</div>
+                    <div>smash</div>
+                </div>
+                <div class="d-flex ml-2">
+                    <div id="passes" class="mr-1">0</div>
+                    <div>pass</div>
+                </div>
+                
             </div>
+            <a href="{{route('profiles.create', ['user' => $user->username])}}" class="btn btn-outline-secondary mt-3">Modifier les informations</a>
             <div class="mt-3">
-                <div>{{--$user->profile->title--}}</div>
+                <div>{{--$user->profile->caption--}}</div>
                 <div>{{--$user->profile->description--}}</div>
                 <a href="{{--$user->profile->url--}}">{{--$user->profile->url--}}</a>
             </div>
@@ -32,8 +44,11 @@
             <a href="{{route('posts.show', ['post' => $post->id])}}"><img src="{{asset('storage') . '/' . $post->image }}" class="w-100" alt=""> {{--on envoi direct le lien de l'utilisateur--}}
 
             </a>
+            <div class="d-flex justify-content-center mt-2">{{$post->description}}</div>
+            
         </div>
         @endforeach
+        
         
 
     </div>

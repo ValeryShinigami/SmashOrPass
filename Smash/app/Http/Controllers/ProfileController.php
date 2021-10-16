@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 
 
+
 class ProfileController extends Controller
 {
     /**
@@ -26,9 +27,10 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
         //
+        return view ('profiles.create', compact('user'));
     }
 
     /**
@@ -40,6 +42,7 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**
@@ -62,9 +65,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
+        return view('profiles.edit', compact('user'));
+
+        //dd($user);
+
     }
 
     /**
@@ -77,6 +84,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
     }
 
     /**

@@ -10,6 +10,7 @@
         <div class="col-4">
             <h3>{{$post->user->username}}</h3>
             <p>{{$post->caption}}</p>
+            <p>{{$post->description}}</p>
         </div>
 
     </div>

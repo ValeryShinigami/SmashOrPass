@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('caption'); //légende
             $table->string('image');
             $table->unsignedBigInteger('user_id')->index();//pour lier la clé etrangère
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profiles/{user}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profiles.show');
 Route::get('/profiles/create/{user}', [App\Http\Controllers\ProfileController::class, 'create'])->name('profiles.create'); //route pour afficher le formulaire
 //Route::get('/profiles/edit/{user}', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profiles.edit'); //route pour afficher le formulaire
-Route::patch('/profiles/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profiles.update'); //route pour modifier les informations
+//Route::patch('/profiles/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profiles.update'); //route pour modifier les informations
 
 
 
@@ -36,6 +36,7 @@ Route::post('/posts/store', [App\Http\Controllers\PostController::class, 'store'
 Route::get('/posts/show/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 
-//route des posts
+
+//route des publications
 Route::get('/posts/publications', [App\Http\Controllers\PostController::class, 'publication'])->name('posts.publications');
 

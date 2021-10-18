@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 use Intervention\Image\Facades\Image;
 
 
@@ -35,7 +36,7 @@ class PostController extends Controller
        $users = auth()->user()->pluck('id');
        //dd($users);
        //je récupère les posts de ma colone username dans la table users
-        $posts = Post::whereIN('user_id', $users)->latest()->get(); 
+        $posts = Post::whereIN('user_id', $users)->with('user')->latest()->paginate(4); 
       // dd($posts);
 
        return view ('posts.publications', compact('posts'));
@@ -68,7 +69,7 @@ class PostController extends Controller
         //utilisation de la facade intervention image installé avec composer require intervention/image
         //public_path permet de pointer vers le dossier public 
         //
-        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1200, 1200);
+        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1000,1000);
         $image->save();
 
         auth()->user()->posts()->create([
@@ -90,8 +91,11 @@ class PostController extends Controller
     {
         //
         //dd($post);
+       
         return view('posts.show', compact('post'));
     }
+
+   
 
     /**
      * Show the form for editing the specified resource.

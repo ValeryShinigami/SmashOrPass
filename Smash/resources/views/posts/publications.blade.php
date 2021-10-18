@@ -11,12 +11,16 @@
 
         </a>
        {{--<div class="d-flex justify-content-center mt-2">{{$post->description}}</div> --}} 
-        <div class="mb-5 mt-2">Posté le {{$post->created_at->format('d/m/y')}}</div>
-        
+        <div class="mb-5 mt-2">Posté le {{$post->created_at->format('d/m/y')}}</div> 
     </div>
         
     @endforeach
-   
+    
+        <div class="d-flex justify-content-center align-items-center">
+            {{ $posts->links() }} {{-- ajouter les boutons de pagination --}}
+          </div>
+      
 </div>
+
     
 @endsection

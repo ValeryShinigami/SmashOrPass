@@ -70,12 +70,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+        $imagePath = request('image')->store('uploads', 'public'); //la fonction store place l'image dans le fichier upload de storage
+        $image = Image::make(public_path("/storage/{$imagePath}"));
+        $image->save();
+
             return User::create([
             'name' => $data['name'],
             'username' => $data['username'], //on récupère le username
             'email' => $data['email'],
-            'image' => $data['image'],
+            'image' => $imagePath,
             'password' => Hash::make($data['password'])
         ]);
         

@@ -28,7 +28,7 @@
                 </div>
                 
             </div>
-            <a href="{{route('profiles.create', ['user' => $user->username])}}" class="btn btn-outline-secondary mt-3">Modifier les informations</a>
+            <a href="{{--route('profiles.create', ['user' => $user->username])--}}" class="btn btn-outline-secondary mt-3">Modifier les informations</a>
             <div class="mt-3">
                 <div>{{--$user->profile->caption--}}</div>
                 <div>{{--$user->profile->description--}}</div>
@@ -47,10 +47,7 @@
             <div class="d-flex justify-content-center mt-2">{{$post->description}}</div>
             
         </div>
-        @endforeach
-        
-        
-
+        @endforeach 
     </div>
 </div>
 @endsection

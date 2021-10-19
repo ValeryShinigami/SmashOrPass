@@ -34,6 +34,7 @@ Route::get('/profiles/create/{user}', [App\Http\Controllers\ProfileController::c
 Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts/store', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/show/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
+Route::post('/posts/like', [App\Http\Controllers\PostController::class, 'like'])->name('posts.like');
 
 
 

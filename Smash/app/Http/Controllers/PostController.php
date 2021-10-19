@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\like;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Http\JsonResponse;
 use Intervention\Image\Facades\Image;
 
 
@@ -129,6 +131,37 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function like(): JsonResponse
+    {
+        $post = Post::find(request()->id); //on récupère notre post
+
+        if ($post->likeUser()){
+            $res = like::where([
+                'user_id' => auth()->user()->id,
+                'post_id' => request()->id
+            ])->delete();
+
+                if ($res) {
+                    # code...
+                    return response()->json([
+                        'count' => Post::find(request()->id)->likes->count()
+                    ]);
+                }
+
+        }else {
+            $like = new like();
+
+            $like->user_id = auth()->user()->id;
+            $like->post_id = request()->id;
+
+            $like->save();
+
+            return response()->json([
+                'count' => Post::find(request()->id)->likes->count()
+            ]);
+        }
     }
     
 }

@@ -1,35 +1,31 @@
+const forms = document.querySelectorAll('#form-js');
 
-   function ajouter (){
+forms.forEach(form => {
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); //stopper l'évènement
 
-    const likeBtn = document.getElementById('smash');
-    let countSmash = document.getElementById('smashes');
+        const url = this.getAttribute('action');
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        const postId = this.querySelector('#post-id-js').value;
+        const count = this.querySelector('#count-js');
 
-    let int = 0;
-    
 
-    likeBtn.addEventListener ("click", ()=>{
-        int +=1;
-        countSmash.innerHTML = int;
+        fetch (url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': token
+            },
+            method: 'post',
+            body: JSON.stringify({
+                id: postId
+            })
+        }).then(response => {
+            response.json().then(data =>{
+                count.innerHTML = data.count;
+            })
+        }).catch(error =>{
+            console.log(error)
+        });
+
     });
-   }
-
-   ajouter();
-   
-   function pass (){
-
-    const likeBtn = document.getElementById('pass');
-    let countSmash = document.getElementById('passes');
-
-    let int = 0;
-    
-
-    likeBtn.addEventListener ("click", ()=>{
-        int +=1;
-        countSmash.innerHTML = int;
-    });
-   }
-
-   pass();
-
-
-
+});

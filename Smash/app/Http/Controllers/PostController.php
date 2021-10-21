@@ -20,6 +20,7 @@ class PostController extends Controller
     public function index()
     {
         //
+        return url()->previous();
     }
 
     /**

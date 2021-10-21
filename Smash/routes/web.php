@@ -35,9 +35,12 @@ Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create
 Route::post('/posts/store', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/show/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 Route::post('/posts/like', [App\Http\Controllers\PostController::class, 'like'])->name('posts.like');
+//Route::get('/posts/show/{post}', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 
 
 
 //route des publications
 Route::get('/posts/publications', [App\Http\Controllers\PostController::class, 'publication'])->name('posts.publications');
+
+
 

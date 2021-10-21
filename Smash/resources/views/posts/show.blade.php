@@ -7,8 +7,16 @@
         <div class="col-8">
             <img src="{{asset('storage' .'/'. $post->image)}}" class="w-100" alt="">
         </div>
+        {{--<form>
+            <input type="button" value="back" onclick="history.go(-1)">
+          </form>--}}
         <div class="col-4">
-            <h3>{{$post->user->username}}</h3>
+            <div class="d-flex align-items-center">
+                <h3 class="pt-2">{{$post->user->username}}</h3>
+                {{-- bouton pour retour à l'url précédent --}}
+                <a href="{{ URL::previous() }}" class="btn btn-default"><img src="https://img.icons8.com/fluency/28/000000/circled-left-2.png"/></a>
+            </div>
+            
             <p>{{$post->caption}}</p>
             <p>{{$post->description}}</p>
 

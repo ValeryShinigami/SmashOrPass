@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\favoris;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Rennokki\Befriended\Traits\Follow;
+use Rennokki\Befriended\Contracts\Following;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements Following
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Follow;
 
     /**
      * The attributes that are mass assignable.
@@ -63,6 +67,11 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(like::class);
+    }
+
+    public function saves()
+    {
+        return $this->belongsToMany(profiles::class);
     }
     
 }

@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\like;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\User;
 use Intervention\Image\Facades\Image;
 
 
@@ -36,11 +37,13 @@ class PostController extends Controller
 
     public function publication()
      {
-       $users = auth()->user()->pluck('id');
+       $users = auth()->user()->pluck('id'); //retourne une collection
        //dd($users);
        //je récupère les posts de ma colone username dans la table users
-        $posts = Post::whereIN('user_id', $users)->with('user')->latest()->paginate(4); 
-      // dd($posts);
+        $posts = Post::whereIN('user_id', $users)->latest()->paginate(4);
+ 
+       //dd($posts);
+       
 
        return view ('posts.publications', compact('posts'));
      }

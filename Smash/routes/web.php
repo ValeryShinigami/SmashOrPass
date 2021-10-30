@@ -27,6 +27,7 @@ Route::get('/profiles/{user}', [App\Http\Controllers\ProfileController::class, '
 Route::get('/profiles/create/{user}', [App\Http\Controllers\ProfileController::class, 'create'])->name('profiles.create'); //route pour afficher le formulaire
 //Route::get('/profiles/edit/{user}', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profiles.edit'); //route pour afficher le formulaire
 //Route::patch('/profiles/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profiles.update'); //route pour modifier les informations
+Route::post('/profiles/{user_id}/follow', [App\Http\Controllers\ProfileController::class, 'follow'])->name('profiles.follow'); //route pour follow
 
 
 
@@ -41,6 +42,9 @@ Route::post('/posts/like', [App\Http\Controllers\PostController::class, 'like'])
 
 //route des publications
 Route::get('/posts/publications', [App\Http\Controllers\PostController::class, 'publication'])->name('posts.publications');
+
+//route de subscribe équivalent de favoris
+Route::get('/subscribe/index', [App\Http\Controllers\SubscribeController::class, 'index'])->name('subscribe.index');
 
 
 

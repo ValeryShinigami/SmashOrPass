@@ -97,4 +97,17 @@ class ProfileController extends Controller
     {
         //
     }
+
+    public function follow($userId)
+    {
+        $user = User::find($userId);
+        if (auth()->user()->isFollowing($user)) {
+            # code...
+            $user->revokeFollower(auth()->user());
+        }else {
+            # code...
+            auth()->user()->follow($user);
+        }
+        return view ('profiles.show', compact('user'));
+    }
 }

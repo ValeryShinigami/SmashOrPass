@@ -27,7 +27,10 @@ Route::get('/profiles/{user}', [App\Http\Controllers\ProfileController::class, '
 Route::get('/profiles/create/{user}', [App\Http\Controllers\ProfileController::class, 'create'])->name('profiles.create'); //route pour afficher le formulaire
 //Route::get('/profiles/edit/{user}', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profiles.edit'); //route pour afficher le formulaire
 //Route::patch('/profiles/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profiles.update'); //route pour modifier les informations
-Route::post('/profiles/{user_id}/follow', [App\Http\Controllers\ProfileController::class, 'follow'])->name('profiles.follow'); //route pour follow
+Route::post('/profiles/{userId}/follow', [App\Http\Controllers\ProfileController::class, 'follow'])->name('profiles.follow'); //route pour follow
+
+//Route::('/profiles/{userId}/follow2', [App\Http\Controllers\ProfileController::class, 'follow2'])->name('profiles.follow2'); //route pour follow
+
 
 
 

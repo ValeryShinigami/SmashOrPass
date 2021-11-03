@@ -4,17 +4,18 @@ namespace App\Models;
 
 use App\Models\favoris;
 use Laravel\Sanctum\HasApiTokens;
+use Laravelista\Comments\Commenter;
+use Rennokki\Befriended\Traits\Follow;
 use Illuminate\Notifications\Notifiable;
+use Rennokki\Befriended\Contracts\Following;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Rennokki\Befriended\Traits\Follow;
-use Rennokki\Befriended\Contracts\Following;
 
 
 class User extends Authenticatable implements Following
 {
-    use HasApiTokens, HasFactory, Notifiable, Follow;
+    use HasApiTokens, HasFactory, Notifiable, Follow, Commenter;
 
     /**
      * The attributes that are mass assignable.

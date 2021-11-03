@@ -34,11 +34,9 @@
                     <input type="hidden" id="post-id-js" value="{{$post->id}}">
                     <button type="submit" class="btn btn-danger">pass</button>
                 </form>
-               </div>
-            
-            
+               </div> 
            </div>
-           
+           @comments(['model' => $post, 'maxIndentationLevel' => 0, 'perPage' => 2]) 
         </div> 
     </div>
 

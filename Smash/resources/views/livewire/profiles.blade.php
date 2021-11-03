@@ -27,18 +27,17 @@
                         <div>pass</div>
                     </div>
                     {{-- count followers  --}}
-                    <div class="d-flex ml-2">
-                        
-                    </div>
                     <form action="{{route('profiles.follow', $user->id)}}" method="POST">
                         @csrf
                         <div class="d-flex ml-2">
-                            <div id="passes" class="mr-1">{{$user->followers(auth()->user())->count()}}</div>
-                        <button type="submit" class="btn btn-primary">
-                            {{ auth()->user()->isFollowing($user) ? 'Unfollow' : 'follow'}}
-                        </button>
+                             <div id="passes" class="mr-1 pt-2">{{$user->followers(auth()->user())->count()}}</div>
+                            <button type="submit" class="btn btn-primary">
+                                    {{ auth()->user()->isFollowing($user) ? 'Unfollow' : 'follow'}}
+                            </button>
+                            @if (auth()->user()->isFollowing($user))
+                                {{$user->username}}
+                            @endif
                         </div>
-                        
                     </form>
                 </div>
                 <a href="{{--route('profiles.create', ['user' => $user->username])--}}" class="btn btn-outline-secondary mt-3">Modifier les informations</a>

@@ -53,9 +53,9 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-    
-       // dd($username);
-        // retourne la vue des profiles
+        
+     //dd($user);
+        // retourne la vue du profile connecté
         return view ('profiles.show', compact('user'));
     }
 
@@ -101,6 +101,7 @@ class ProfileController extends Controller
     public function follow($userId)
     {
         $user = User::find($userId);
+        //dd($user);
         if (auth()->user()->isFollowing($user)) {
             # code...
             $user->revokeFollower(auth()->user());
@@ -108,6 +109,16 @@ class ProfileController extends Controller
             # code...
             auth()->user()->follow($user);
         }
-        return view ('profiles.show', compact('user'));
+        return redirect()->route('profiles.show', compact('user'));
     }
+
+    public function follow2($userId)
+    {
+        $user = User::find($userId);
+        dd($user);
+      
+        
+        return view('profiles.follow2', compact('user'));
+    }
+
 }

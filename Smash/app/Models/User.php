@@ -11,11 +11,15 @@ use Rennokki\Befriended\Contracts\Following;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Rennokki\Befriended\Traits\Like;
+use Rennokki\Befriended\Contracts\Liking;
 
 
-class User extends Authenticatable implements Following
+
+
+class User extends Authenticatable implements Following, Liking
 {
-    use HasApiTokens, HasFactory, Notifiable, Follow, Commenter;
+    use HasApiTokens, HasFactory, Notifiable, Follow, Commenter, Like;
 
     /**
      * The attributes that are mass assignable.
@@ -65,10 +69,10 @@ class User extends Authenticatable implements Following
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
-    public function likes()
-    {
-        return $this->hasMany(like::class);
-    }
+    //public function likes2()
+    //{
+      //  return $this->hasMany(like::class);
+    //}
 
     public function saves()
     {

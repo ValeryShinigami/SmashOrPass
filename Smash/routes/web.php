@@ -29,7 +29,7 @@ Route::get('/profiles/create/{user}', [App\Http\Controllers\ProfileController::c
 //Route::patch('/profiles/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profiles.update'); //route pour modifier les informations
 Route::post('/profiles/{userId}/follow', [App\Http\Controllers\ProfileController::class, 'follow'])->name('profiles.follow'); //route pour follow
 
-//Route::('/profiles/{userId}/follow2', [App\Http\Controllers\ProfileController::class, 'follow2'])->name('profiles.follow2'); //route pour follow
+//Route::post('/profiles/{userId}/follow2', [App\Http\Controllers\ProfileController::class, 'follow2'])->name('profiles.follow2'); //route pour follow
 
 
 
@@ -38,8 +38,9 @@ Route::post('/profiles/{userId}/follow', [App\Http\Controllers\ProfileController
 Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts/store', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/show/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
-Route::post('/posts/like', [App\Http\Controllers\PostController::class, 'like'])->name('posts.like');
+//Route::post('/posts/like2', [App\Http\Controllers\PostController::class, 'like2'])->name('posts.like2');
 //Route::get('/posts/show/{post}', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::post('/posts/{postId}/like', [App\Http\Controllers\PostController::class, 'like'])->name('posts.like'); //route like des utilisateurs sur les posts
 
 
 

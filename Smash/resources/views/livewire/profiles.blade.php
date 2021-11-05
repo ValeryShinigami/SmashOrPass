@@ -57,8 +57,12 @@
                 <a href="{{route('posts.show', ['post' => $post->id])}}"><img src="{{asset('storage') . '/' . $post->image }}" class="w-100" alt=""> {{--on envoi direct le lien de l'utilisateur--}}
     
                 </a>
-                <div class="d-flex justify-content-center mt-2">{{$post->description}}</div>
-                
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-center mt-2">{{$post->description}}</div>
+                    <div id="p" class="mr-1 pt-2">{{$post->likers(auth()->user())->count()}} <img src="https://img.icons8.com/external-those-icons-lineal-color-those-icons/17/000000/external-heart-love-those-icons-lineal-color-those-icons.png"/></div>
+    
+                </div>
+               
             </div>
             @endforeach 
         </div>

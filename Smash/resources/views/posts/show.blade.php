@@ -20,22 +20,17 @@
             <p>{{$post->caption}}</p>
             <p>{{$post->description}}</p>
 
-           <div class="d-flex">
-               <div class="mr-3">
-                <form action="{{route('posts.like')}}" id="form-js" >
-                    <div class="text-center" id="count-js">{{$post->likes->count()}}</div>
-                    <input type="hidden" id="post-id-js" value="{{$post->id}}">
-                    <button type="submit" class="btn btn-primary">smash</button>
-                </form>
-               </div>
-               <div>
-                <form action="{{route('posts.like')}}" id="form-js" >
-                    <div class="text-center" id="count-js">{{$post->likes->count()}}</div>
-                    <input type="hidden" id="post-id-js" value="{{$post->id}}">
-                    <button type="submit" class="btn btn-danger">pass</button>
-                </form>
-               </div> 
-           </div>
+           
+{{--********************************************************************** --}}
+        <form action="{{route('posts.like', $post->id)}}" method="POST">
+            @csrf
+            <div class="d-flex ml-2">
+                 <div id="p" class="mr-1 pt-2">{{$post->likers(auth()->user())->count()}}</div>
+                <button type="submit" class="btn btn-primary">
+                        {{auth()->user()->isliking($post) ? 'dislike' : 'like'}}
+                </button>
+            </div>
+        </form>
            @comments(['model' => $post, 'maxIndentationLevel' => 0, 'perPage' => 2]) 
         </div> 
     </div>

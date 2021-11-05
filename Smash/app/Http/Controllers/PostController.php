@@ -137,7 +137,7 @@ class PostController extends Controller
         //
     }
 
-    public function like(): JsonResponse
+   /* public function like2(): JsonResponse
     {
         $post = Post::find(request()->id); //on récupère notre post
 
@@ -166,6 +166,26 @@ class PostController extends Controller
                 'count' => Post::find(request()->id)->likes->count()
             ]);
         }
+    }*/
+
+    //création de la fonction aime / j'aime pas sur les post des utilisateurs
+    public function like($postID)
+    {
+        $post = Post::find($postID); 
+        //dd($post);
+         
+        if (auth()->user()->isLiking($post)) {
+            
+        
+            auth()->user()->unLike($post);
+        }else {
+            
+            auth()->user()->like($post);
+        }
+        
+        return redirect()->route('posts.show', compact('post'));
     }
     
 }
+
+

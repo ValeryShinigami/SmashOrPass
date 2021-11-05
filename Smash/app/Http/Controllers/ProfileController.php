@@ -112,13 +112,13 @@ class ProfileController extends Controller
         return redirect()->route('profiles.show', compact('user'));
     }
 
-    public function follow2($userId)
+    /**public function follow2($userId)
     {
         $user = User::find($userId);
-        dd($user);
+        //dd($user);
       
         
         return view('profiles.follow2', compact('user'));
-    }
+    }**/
 
 }

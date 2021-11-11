@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\RegisterNotification;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -73,16 +74,21 @@ class RegisterController extends Controller
         $imagePath = request('image')->store('uploads', 'public'); //la fonction store place l'image dans le fichier upload de storage
         $image = Image::make(public_path("/storage/{$imagePath}"));
         $image->save();
-
-            return User::create([
+            //$registered_user = User::first();
+            $registered_user = User::create([
             'name' => $data['name'],
             'username' => $data['username'], //on récupère le username
             'email' => $data['email'],
             'image' => $imagePath,
             'password' => Hash::make($data['password'])
         ]);
+      
+        $registered_user->notify(new RegisterNotification());
+
+        return $registered_user;
         
     }
+    
 
 
     private function storeImage(User $user) 

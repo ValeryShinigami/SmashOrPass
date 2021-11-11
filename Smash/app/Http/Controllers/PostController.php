@@ -9,10 +9,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
 use Intervention\Image\Facades\Image;
+use App\Notifications\LikeNotification;
+use Illuminate\Notifications\Notifiable;
 
 
 class PostController extends Controller
 {
+    use Notifiable;
     /**
      * Display a listing of the resource.
      *
@@ -169,9 +172,9 @@ class PostController extends Controller
     }*/
 
     //création de la fonction aime / j'aime pas sur les post des utilisateurs
-    public function like($postID)
+    public function like($postId)
     {
-        $post = Post::find($postID); 
+        $post = Post::find($postId); 
         //dd($post);
          
         if (auth()->user()->isLiking($post)) {
@@ -181,11 +184,15 @@ class PostController extends Controller
         }else {
             
             auth()->user()->like($post);
+           
         }
         
         return redirect()->route('posts.show', compact('post'));
     }
-    
+
+
+      //$post->notify(new LikeNotification());
+   // $user->notify(new InvoicePaid($invoice));
 }
 
 

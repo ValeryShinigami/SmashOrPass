@@ -68,6 +68,7 @@
                                     <a href="{{route('posts.create')}}" class="dropdown-item">Créer un post</a>
                                     <a href="{{route('posts.publications')}}" class="dropdown-item">Recherche</a>
                                     
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

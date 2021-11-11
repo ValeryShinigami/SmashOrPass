@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Rennokki\Befriended\Traits\Like;
 use Laravelista\Comments\Commentable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Rennokki\Befriended\Traits\Like;
 use Rennokki\Befriended\Contracts\Liking;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 

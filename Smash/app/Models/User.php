@@ -78,5 +78,5 @@ class User extends Authenticatable implements Following, Liking
     {
         return $this->belongsToMany(profiles::class);
     }
-    
+
 }

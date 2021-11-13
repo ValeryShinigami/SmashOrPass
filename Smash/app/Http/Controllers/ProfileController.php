@@ -121,4 +121,5 @@ class ProfileController extends Controller
         return view('profiles.follow2', compact('user'));
     }**/
 
+
 }

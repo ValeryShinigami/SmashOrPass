@@ -41,9 +41,9 @@ class RegisterNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
+                    ->line('Bienvenu sur le site Smash or Pass.')
                     ->action('Notification Action', config('app.url'))
-                    ->line('Thank you for using our application!');
+                    ->line('Merci pour votre participation!');
     }
 
     /**
